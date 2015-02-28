@@ -1,8 +1,113 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Django on AppFog</title>
-  </head>
-  <body>
-	<h1>Hello AppFog World!</h1>
-  </body>
+    <head>
+        <title>Django Info v {{ django_info_version }}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <style type="text/css">
+            body { background-color: #092E20; font: 12px/1.4em Verdana,sans-serif;}
+            h1, h2, h3, h4 {
+                font-family: "Trebuchet MS",sans-serif;
+                font-weight: normal;
+                margin-top: 0.8em;
+            }
+            h1 {
+                color: #092E20;
+                font-size: 218%;
+                line-height: 1.1em;
+                margin-bottom: 0.6em;
+                margin-top: 0.6em;
+            }
+            h2 {
+                color: #487858;
+                font-size: 150%;
+                line-height: 1.2em;
+                margin-bottom: 0.2em;
+                margin-top: 1em;
+            }
+            h3 {
+                color: #092E20;
+                font-size: 125%;
+                font-weight: bold;
+                margin-bottom: 0.2em;
+            }
+            .container { width: 960px; margin: 0 auto;}
+            .section { background-color: #FFFFFF; padding: 0 10px; margin: 5px 0; padding: 10px;}
+            .section .title { text-align: center;}
+            .section td strong { color: #AB5603; }
+            #header { text-align: center; }
+            .clear { clear: both;}
+            .left_block { width: 200px; }
+        </style>
+
+    </head>
+    <body>
+        <div class="container">
+            <div id="header" class="section">
+                <h1>Django v{{ django_version }}</h1>
+            </div>
+
+            <div id="general" class="section">
+                <h1 class="title">General:</h1>
+                <table>
+                    <tr>
+                        <td><strong>Python version: </strong></td>
+                        <td>{{ python_version }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Django version: </strong></td>
+                        <td>{{ django_version }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Database Engine: </strong></td>
+                        <td>{{ database_engine }}</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="settings" class="section">
+
+                <h1 class="title">Settings:</h1>
+
+                <div>
+                    <h2>Generals:</h2>
+                    <table id="generals_settings">
+                        <tr>
+                            <td><strong>DEBUG mode?: </strong></td>
+                            <td>{{ settings_debug_mode }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TEMPLATE DEBUG mode?: </strong></td>
+                            <td>{{ settings_template_debug_mode }}</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <h2>PATHs:</h2>
+                    <!-- PATH -->
+                    <div class="center_block">
+                        <ul>
+                        {% for path in paths %}
+                            <li>{{ path }}</li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h2>Installed apps:</h2>
+                    <!-- Installed apps -->
+                    <div class="right_block">
+                        <ul id="installed_apps_settings">
+                            {% for app in settings_installed_apps %}
+                                <li>{{ app }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </body>
 </html>
